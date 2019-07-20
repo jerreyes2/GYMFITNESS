@@ -11,12 +11,12 @@ namespace systemaGYMFITNESS.Datos
 
         private bdDataContext db = new bdDataContext();
 
-        public Empleado empleadoCRUD, cli;   // en el usuario es el mismo usuario q ingresa al sistema
+        public Empleados empleadoCRUD, cli;   // en el usuario es el mismo usuario q ingresa al sistema
 
         public bdDataContext Db { get => db; set => db = value; }
 
         // metodo que me consulta  a un usuario / usuario
-        public Empleado getCLiente(String cedula)
+        public Empleados getCLiente(String cedula)
         {
             try
             { 
@@ -31,7 +31,7 @@ namespace systemaGYMFITNESS.Datos
 
         }
         // metodo que me permite consultar usuario para logeo esta ya sea con la celula o el nombre de usuario
-        public Empleado consultaUsuario(String usuario,String contrasenia)
+        public Empleados consultaUsuario(String usuario,String contrasenia)
         {
         
             try
@@ -49,7 +49,7 @@ namespace systemaGYMFITNESS.Datos
         }
 
         // metodo que me consulta  el email de un usuario / usuario
-        public Empleado getEmpleadoEmail(String email)
+        public Empleados getEmpleadoEmail(String email)
         {
             try
             {

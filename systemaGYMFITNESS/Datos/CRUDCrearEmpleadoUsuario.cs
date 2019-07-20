@@ -14,12 +14,12 @@ namespace systemaGYMFITNESS.Datos
 
         private bdDataContext db = new bdDataContext();
 
-        public Empleado empleadoCRUD, usuario;
+        public Empleados empleadoCRUD, usuario;
 
         public bdDataContext Db { get => db; set => db = value; }
 
         // metodo que me consulta  a un usuario
-        public Empleado getUsuario(String cedula)
+        public Empleados getUsuario(String cedula)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace systemaGYMFITNESS.Datos
          Metodo que inserta un usuario
          */
 
-        public void insert(Empleado empleado)
+        public void insert(Empleados empleado)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace systemaGYMFITNESS.Datos
         /*
          Metodo que actualiza un usuario
          */
-        public void update(String cedula, Empleado empleado)
+        public void update(String cedula, Empleados empleado)
         {
             try
             {

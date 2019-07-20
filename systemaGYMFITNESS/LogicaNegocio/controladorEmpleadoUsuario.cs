@@ -19,7 +19,7 @@ namespace systemaGYMFITNESS.LogicaNegocio
 
         private CRUDCrearEmpleadoUsuario datos_empleado;
         private FrmEmpleados formulario;
-        Empleado empleado;
+        Empleados empleado;
      
         public controladorEmpleadoUsuario(FrmEmpleados formulario)
         {
@@ -65,8 +65,8 @@ namespace systemaGYMFITNESS.LogicaNegocio
         {
             if (formulario.TxtFiltrar.Text.Trim() != "")
             {
-                var filtro = from Empleado c in datos_empleado.Db.Empleados where c.cedula_Empleado.ToUpper().Contains(formulario.TxtFiltrar.Text.Trim().ToUpper()) select c;
-                foreach (Empleado c in filtro)
+                var filtro = from Empleados c in datos_empleado.Db.Empleados where c.cedula_Empleado.ToUpper().Contains(formulario.TxtFiltrar.Text.Trim().ToUpper()) select c;
+                foreach (Empleados c in filtro)
                 {
                     formulario.Tabla.DataSource  = filtro;
                 }
@@ -74,9 +74,9 @@ namespace systemaGYMFITNESS.LogicaNegocio
 
         }
 
-        public Empleado getDatosEmpleado()
+        public Empleados getDatosEmpleado()
         {
-            empleado = new Empleado();
+            empleado = new Empleados();
 
             empleado.cedula_Empleado = formulario.TxtCedula.Text.Trim();
             empleado.nombre = formulario.TxtNombres.Text.Trim();

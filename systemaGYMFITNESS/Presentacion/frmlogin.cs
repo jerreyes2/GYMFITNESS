@@ -15,7 +15,7 @@ namespace systemaGYMFITNESS.Presentacion
     public partial class frmlogin : Form
     {
         controladorLogin controlador ;
-        Empleado usuario;
+        Empleados usuario;
 
         public frmlogin()
         {

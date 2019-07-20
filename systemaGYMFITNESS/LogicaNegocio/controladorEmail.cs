@@ -14,7 +14,7 @@ namespace systemaGYMFITNESS.LogicaNegocio
 {
    public  class controladorEmail
     {
-        Empleado usuario;
+        Empleados usuario;
         public DatosLogin datos;
         public frmRecordar formulario;
         private string correoApp { get; set; }

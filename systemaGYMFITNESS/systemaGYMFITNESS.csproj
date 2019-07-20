@@ -58,7 +58,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CircularProgressBar, Version=2.7.0.7, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
@@ -115,6 +115,12 @@
     </Compile>
     <Compile Include="Presentacion\frmAsisenciaCliente.Designer.cs">
       <DependentUpon>frmAsisenciaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmAsistenteCRUDClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmAsistenteCRUDClientes.Designer.cs">
+      <DependentUpon>frmAsistenteCRUDClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\frmBoard.cs">
       <SubType>Form</SubType>

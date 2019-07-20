@@ -10,7 +10,7 @@ namespace systemaGYMFITNESS.LogicaNegocio
 {
     public class controladorLogin
     {
-        Empleado usuario;
+        Empleados usuario;
         public DatosLogin datos;
         public frmlogin formulario;
 
@@ -20,7 +20,7 @@ namespace systemaGYMFITNESS.LogicaNegocio
             this.formulario = frmLogin;
         }
 
-        public Empleado Iniciar_sesion()
+        public Empleados Iniciar_sesion()
         {
             usuario= datos.consultaUsuario(formulario.TxtNombreUsuario.Text.Trim(), formulario.TxtContrasenia.Text.Trim());
             return usuario;

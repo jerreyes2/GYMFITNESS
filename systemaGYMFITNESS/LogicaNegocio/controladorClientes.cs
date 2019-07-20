@@ -12,7 +12,7 @@ namespace systemaGYMFITNESS.LogicaNegocio
     {
         private CRUDClientes datos_cliente;
         private frmClientes formulario;
-        cliente OBJcliente;
+        clientes OBJcliente;
 
         public controladorClientes(frmClientes formulario)
         {
@@ -26,9 +26,9 @@ namespace systemaGYMFITNESS.LogicaNegocio
             datos_cliente.insert(OBJcliente);
         }
 
-        public cliente getDatosEmpleado()
+        public clientes getDatosEmpleado()
         {
-            OBJcliente = new cliente();
+            OBJcliente = new clientes();
             OBJcliente.cedula = formulario.txtCedula.Text.Trim();
             OBJcliente.nombres = formulario.txtNombres.Text;
             OBJcliente.apellidos = formulario.txtApellidos.Text;

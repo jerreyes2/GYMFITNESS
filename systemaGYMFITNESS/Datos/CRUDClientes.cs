@@ -11,9 +11,9 @@ namespace systemaGYMFITNESS.Datos
     {
         private bdDataContext db = new bdDataContext();
 
-        public cliente clientesCRUD;
+        public clientes clientesCRUD;
 
-        public void insert(cliente cliente)
+        public void insert(clientes cliente)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace systemaGYMFITNESS.Datos
             }
         }
 
-        public cliente getClientes(String cedula)
+        public clientes getClientes(String cedula)
         {
             try
             {
