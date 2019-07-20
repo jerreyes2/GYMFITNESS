@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="bdGYMFITNESS1v1" Class="bdDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=bdGYMFITNESS1v1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="systemaGYMFITNESS.Properties.Settings" SettingsPropertyName="bdGYMFITNESS1v1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Asistencia_Clientes" Member="Asistencia_Clientes">
+    <Type Name="Asistencia_Cliente">
+      <Column Name="cedula_cliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fecha" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="cliente_Asistencia_Cliente" Member="cliente" ThisKey="cedula_cliente" OtherKey="cedula" Type="cliente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.categoria" Member="categorias">
+    <Type Name="categoria">
+      <Column Name="id_categoria" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_categoria" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="categoria_producto" Member="productos" ThisKey="id_categoria" OtherKey="id_categoria" Type="producto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.cliente_venta_produc" Member="cliente_venta_producs">
+    <Type Name="cliente_venta_produc">
+      <Column Name="cedula_cliente" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="apellido" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="cliente_venta_produc_venta_producto" Member="venta_productos" ThisKey="cedula_cliente" OtherKey="cedula_cliente" Type="venta_producto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.clientes" Member="clientes">
+    <Type Name="cliente">
+      <Column Name="cedula" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombres" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="apellidos" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fecha_nacimiento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="celular" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="peso" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="cadera" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="sexo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="altura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="cuello" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="cintura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="indiceCintura_Altura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="masaCorporalMagra" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="sobrepeso" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="cliente_Asistencia_Cliente" Member="Asistencia_Clientes" ThisKey="cedula" OtherKey="cedula_cliente" Type="Asistencia_Cliente" />
+      <Association Name="cliente_membresia_cliente" Member="membresia_clientes" ThisKey="cedula" OtherKey="cedula_Cliente" Type="membresia_cliente" />
+      <Association Name="cliente_pagos_cliente" Member="pagos_clientes" ThisKey="cedula" OtherKey="cedula_cliente" Type="pagos_cliente" />
+    </Type>
+  </Table>
+  <Table Name="dbo.compra_producto" Member="compra_productos">
+    <Type Name="compra_producto">
+      <Column Name="id_compra" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RUC_proveedor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fecha_compra" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="tipo_documento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="num_documento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id_empleado" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="compra_producto_detalle_compra_producto" Member="detalle_compra_productos" ThisKey="id_compra" OtherKey="id_compra" Type="detalle_compra_producto" />
+      <Association Name="proveedore_compra_producto" Member="proveedore" ThisKey="RUC_proveedor" OtherKey="RUC" Type="proveedore" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.detalle_compra_producto" Member="detalle_compra_productos">
+    <Type Name="detalle_compra_producto">
+      <Column Name="id_detalle_compra" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_compra" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id_producto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="precio_unitario" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="compra_producto_detalle_compra_producto" Member="compra_producto" ThisKey="id_compra" OtherKey="id_compra" Type="compra_producto" IsForeignKey="true" />
+      <Association Name="producto_detalle_compra_producto" Member="producto" ThisKey="id_producto" OtherKey="id_producto" Type="producto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.detalle_venta_producto" Member="detalle_venta_productos">
+    <Type Name="detalle_venta_producto">
+      <Column Name="id_detalle" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_venta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id_producto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="precio_unitario" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="producto_detalle_venta_producto" Member="producto" ThisKey="id_producto" OtherKey="id_producto" Type="producto" IsForeignKey="true" />
+      <Association Name="venta_producto_detalle_venta_producto" Member="venta_producto" ThisKey="id_venta" OtherKey="id_venta" Type="venta_producto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Empleados" Member="Empleados">
+    <Type Name="Empleado">
+      <Column Name="cedula_Empleado" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="apellido" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="login" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="tipo_acceso" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Empleado_faltas_Empleado" Member="faltas_Empleados" ThisKey="cedula_Empleado" OtherKey="cedula_Empleado" Type="faltas_Empleado" />
+      <Association Name="Empleado_pago_sueldo_Empleado" Member="pago_sueldo_Empleados" ThisKey="cedula_Empleado" OtherKey="cedula_empleado" Type="pago_sueldo_Empleado" />
+    </Type>
+  </Table>
+  <Table Name="dbo.faltas_Empleados" Member="faltas_Empleados">
+    <Type Name="faltas_Empleado">
+      <Column Name="Id_falta" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="cedula_Empleado" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fecha_falta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Empleado_faltas_Empleado" Member="Empleado" ThisKey="cedula_Empleado" OtherKey="cedula_Empleado" Type="Empleado" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.membresia_clientes" Member="membresia_clientes">
+    <Type Name="membresia_cliente">
+      <Column Name="id_membresia" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="cedula_Cliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fecha_pago" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="fecha_proximo_pago" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="nivel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="rutina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="membresia_cliente_pagos_cliente" Member="pagos_clientes" ThisKey="id_membresia" OtherKey="id_membresia" Type="pagos_cliente" />
+      <Association Name="cliente_membresia_cliente" Member="cliente" ThisKey="cedula_Cliente" OtherKey="cedula" Type="cliente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pago_sueldo_Empleados" Member="pago_sueldo_Empleados">
+    <Type Name="pago_sueldo_Empleado">
+      <Column Name="ID_pagoSueldo" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="cedula_empleado" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Nro_CuentaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Monto_Pago" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Fecha_Pago" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Empleado_pago_sueldo_Empleado" Member="Empleado" ThisKey="cedula_empleado" OtherKey="cedula_Empleado" Type="Empleado" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pagos_cliente" Member="pagos_clientes">
+    <Type Name="pagos_cliente">
+      <Column Name="cedula_cliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id_membresia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="costo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="total" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="cliente_pagos_cliente" Member="cliente" ThisKey="cedula_cliente" OtherKey="cedula" Type="cliente" IsForeignKey="true" />
+      <Association Name="membresia_cliente_pagos_cliente" Member="membresia_cliente" ThisKey="id_membresia" OtherKey="id_membresia" Type="membresia_cliente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.producto" Member="productos">
+    <Type Name="producto">
+      <Column Name="id_producto" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_categoria" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="nombre_producto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="descripcion_producto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="stock_producto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="precio_compra_produc" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="precio_venta_produc" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="fecha_vencimiento_prod" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="imagen_producto" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="producto_detalle_compra_producto" Member="detalle_compra_productos" ThisKey="id_producto" OtherKey="id_producto" Type="detalle_compra_producto" />
+      <Association Name="producto_detalle_venta_producto" Member="detalle_venta_productos" ThisKey="id_producto" OtherKey="id_producto" Type="detalle_venta_producto" />
+      <Association Name="categoria_producto" Member="categoria" ThisKey="id_categoria" OtherKey="id_categoria" Type="categoria" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.proveedores" Member="proveedores">
+    <Type Name="proveedore">
+      <Column Name="RUC" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_proveedor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="proveedore_compra_producto" Member="compra_productos" ThisKey="RUC" OtherKey="RUC_proveedor" Type="compra_producto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.venta_producto" Member="venta_productos">
+    <Type Name="venta_producto">
+      <Column Name="id_venta" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="cedula_cliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fecha_venta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="tipo_documento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="num_documento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id_empleado" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="venta_producto_detalle_venta_producto" Member="detalle_venta_productos" ThisKey="id_venta" OtherKey="id_venta" Type="detalle_venta_producto" />
+      <Association Name="cliente_venta_produc_venta_producto" Member="cliente_venta_produc" ThisKey="cedula_cliente" OtherKey="cedula_cliente" Type="cliente_venta_produc" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
