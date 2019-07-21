@@ -30,6 +30,9 @@ namespace systemaGYMFITNESS.Datos
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
+    partial void InsertAsistencia_Clientes(Asistencia_Clientes instance);
+    partial void UpdateAsistencia_Clientes(Asistencia_Clientes instance);
+    partial void DeleteAsistencia_Clientes(Asistencia_Clientes instance);
     partial void Insertcategoria(categoria instance);
     partial void Updatecategoria(categoria instance);
     partial void Deletecategoria(categoria instance);
@@ -223,15 +226,35 @@ namespace systemaGYMFITNESS.Datos
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Asistencia_Clientes")]
-	public partial class Asistencia_Clientes
+	public partial class Asistencia_Clientes : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _cedula_cliente;
 		
 		private System.Nullable<System.DateTime> _fecha;
 		
+		private string _ID_Asistencia_Clientes;
+		
+		private EntityRef<clientes> _clientes;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncedula_clienteChanging(string value);
+    partial void Oncedula_clienteChanged();
+    partial void OnfechaChanging(System.Nullable<System.DateTime> value);
+    partial void OnfechaChanged();
+    partial void OnID_Asistencia_ClientesChanging(string value);
+    partial void OnID_Asistencia_ClientesChanged();
+    #endregion
+		
 		public Asistencia_Clientes()
 		{
+			this._clientes = default(EntityRef<clientes>);
+			OnCreated();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cedula_cliente", DbType="VarChar(50)")]
@@ -245,7 +268,15 @@ namespace systemaGYMFITNESS.Datos
 			{
 				if ((this._cedula_cliente != value))
 				{
+					if (this._clientes.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oncedula_clienteChanging(value);
+					this.SendPropertyChanging();
 					this._cedula_cliente = value;
+					this.SendPropertyChanged("cedula_cliente");
+					this.Oncedula_clienteChanged();
 				}
 			}
 		}
@@ -261,8 +292,86 @@ namespace systemaGYMFITNESS.Datos
 			{
 				if ((this._fecha != value))
 				{
+					this.OnfechaChanging(value);
+					this.SendPropertyChanging();
 					this._fecha = value;
+					this.SendPropertyChanged("fecha");
+					this.OnfechaChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Asistencia_Clientes", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ID_Asistencia_Clientes
+		{
+			get
+			{
+				return this._ID_Asistencia_Clientes;
+			}
+			set
+			{
+				if ((this._ID_Asistencia_Clientes != value))
+				{
+					this.OnID_Asistencia_ClientesChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Asistencia_Clientes = value;
+					this.SendPropertyChanged("ID_Asistencia_Clientes");
+					this.OnID_Asistencia_ClientesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="clientes_Asistencia_Clientes", Storage="_clientes", ThisKey="cedula_cliente", OtherKey="cedula", IsForeignKey=true)]
+		public clientes clientes
+		{
+			get
+			{
+				return this._clientes.Entity;
+			}
+			set
+			{
+				clientes previousValue = this._clientes.Entity;
+				if (((previousValue != value) 
+							|| (this._clientes.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._clientes.Entity = null;
+						previousValue.Asistencia_Clientes.Remove(this);
+					}
+					this._clientes.Entity = value;
+					if ((value != null))
+					{
+						value.Asistencia_Clientes.Add(this);
+						this._cedula_cliente = value.cedula;
+					}
+					else
+					{
+						this._cedula_cliente = default(string);
+					}
+					this.SendPropertyChanged("clientes");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -605,6 +714,8 @@ namespace systemaGYMFITNESS.Datos
 		
 		private System.Nullable<decimal> _sobrepeso;
 		
+		private EntitySet<Asistencia_Clientes> _Asistencia_Clientes;
+		
 		private EntitySet<membresia_clientes> _membresia_clientes;
 		
     #region Definiciones de métodos de extensibilidad
@@ -647,6 +758,7 @@ namespace systemaGYMFITNESS.Datos
 		
 		public clientes()
 		{
+			this._Asistencia_Clientes = new EntitySet<Asistencia_Clientes>(new Action<Asistencia_Clientes>(this.attach_Asistencia_Clientes), new Action<Asistencia_Clientes>(this.detach_Asistencia_Clientes));
 			this._membresia_clientes = new EntitySet<membresia_clientes>(new Action<membresia_clientes>(this.attach_membresia_clientes), new Action<membresia_clientes>(this.detach_membresia_clientes));
 			OnCreated();
 		}
@@ -971,6 +1083,19 @@ namespace systemaGYMFITNESS.Datos
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="clientes_Asistencia_Clientes", Storage="_Asistencia_Clientes", ThisKey="cedula", OtherKey="cedula_cliente")]
+		public EntitySet<Asistencia_Clientes> Asistencia_Clientes
+		{
+			get
+			{
+				return this._Asistencia_Clientes;
+			}
+			set
+			{
+				this._Asistencia_Clientes.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="clientes_membresia_clientes", Storage="_membresia_clientes", ThisKey="cedula", OtherKey="cedula_Cliente")]
 		public EntitySet<membresia_clientes> membresia_clientes
 		{
@@ -1002,6 +1127,18 @@ namespace systemaGYMFITNESS.Datos
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Asistencia_Clientes(Asistencia_Clientes entity)
+		{
+			this.SendPropertyChanging();
+			entity.clientes = this;
+		}
+		
+		private void detach_Asistencia_Clientes(Asistencia_Clientes entity)
+		{
+			this.SendPropertyChanging();
+			entity.clientes = null;
 		}
 		
 		private void attach_membresia_clientes(membresia_clientes entity)
@@ -2938,7 +3075,7 @@ namespace systemaGYMFITNESS.Datos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imagen_producto", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imagen_producto", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary imagen_producto
 		{
 			get

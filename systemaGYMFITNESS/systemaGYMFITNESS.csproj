@@ -99,9 +99,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bd.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Datos\CRUDAsistenciaClientes.cs" />
     <Compile Include="Datos\CRUDClientes.cs" />
     <Compile Include="Datos\CRUDCrearEmpleadoUsuario.cs" />
     <Compile Include="Datos\DatosLogin.cs" />
+    <Compile Include="LogicaNegocio\controladorAsistenciaClientes.cs" />
     <Compile Include="LogicaNegocio\controladorClientes.cs" />
     <Compile Include="LogicaNegocio\controladorEmpleadoUsuario.cs" />
     <Compile Include="LogicaNegocio\controladorEmail.cs" />
@@ -198,6 +200,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Presentacion\frmAsisenciaCliente.resx">
       <DependentUpon>frmAsisenciaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmAsistenteCRUDClientes.resx">
+      <DependentUpon>frmAsistenteCRUDClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\frmBoard.resx">
       <DependentUpon>frmBoard.cs</DependentUpon>
@@ -310,6 +315,7 @@
     <Content Include="Imagenes\GYM.png" />
     <Content Include="Imagenes\gymhombre.png" />
     <Content Include="Imagenes\hombreymujer.jpg" />
+    <None Include="Imagenes\ico_nominas_2.png" />
     <Content Include="Imagenes\INICIOF.png" />
     <Content Include="Imagenes\introduccion.png" />
     <Content Include="Imagenes\LOGO-FITNES2.png" />

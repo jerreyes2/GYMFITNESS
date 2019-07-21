@@ -4,6 +4,7 @@
     <Type Name="Asistencia_Clientes">
       <Column Name="cedula_cliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="fecha" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ID_Asistencia_Clientes" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="clientes_Asistencia_Clientes" Member="clientes" ThisKey="cedula_cliente" OtherKey="cedula" Type="clientes" IsForeignKey="true" />
     </Type>
   </Table>

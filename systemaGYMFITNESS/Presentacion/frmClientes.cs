@@ -81,7 +81,7 @@ namespace systemaGYMFITNESS.Presentacion
             this.WindowState = FormWindowState.Minimized;
         }
 
-                
+
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -89,7 +89,7 @@ namespace systemaGYMFITNESS.Presentacion
 
         private void FrmClientes_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void PanelTitulo_MouseMove_1(object sender, MouseEventArgs e)
@@ -123,7 +123,7 @@ namespace systemaGYMFITNESS.Presentacion
 
         private void BtnSiguienteCrearCuenta_Click(object sender, EventArgs e)
         {
-            if (estaVacio() == false)
+            if (controlCambioTabs(tabControl1.SelectedIndex))
             {
                 tabControl1.SelectedIndex = 1;
             }
@@ -140,16 +140,32 @@ namespace systemaGYMFITNESS.Presentacion
                 MessageBox.Show("Debe de calcular el costo antes de continuar");
             else
             {
-                if (estaVacio() == false)
+                if (tbDias.TextLength > 0)
                 {
-                    tabControl1.SelectedIndex = 2;
+                    if (cbbNivel.Text.Equals("Escoja un valor"))
+                    {
+                        MessageBox.Show("Seleccione un valor de la lista para el campo NIVEL", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        if (cbbRutina.Text.Equals("Escoja un valor"))
+                        {
+                            MessageBox.Show("Seleccione un valor de la lista para el campo Rutina", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        else
+                        {
+                            tabControl1.SelectedIndex = 2;
+                        }
+                    }
                 }
+                else
+                    MessageBox.Show("Escriba una valor para el campo Dias", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private void BtnAnteriorDatoMembresia_Click(object sender, EventArgs e)
         {
-             tabControl1.SelectedIndex = 0;
+            tabControl1.SelectedIndex = 0;
         }
 
         private void BtnAnteriorFicha_Click(object sender, EventArgs e)
@@ -160,22 +176,25 @@ namespace systemaGYMFITNESS.Presentacion
         public Boolean cambioFicha;
         private void BtnSiguienteFicha_Click(object sender, EventArgs e)
         {
-            if (estaVacio() == false)
+            if (txtPeso.TextLength > 0 | txtCuello.TextLength > 0 | txtAltura.TextLength > 0 | txtCintura.TextLength > 0)
             {
                 if (cambioFicha)
                 {
-                    tabControl1.SelectedIndex = 3;
+                    if (controlCambioTabs(tabControl1.SelectedIndex))
+                    {
+                        tabControl1.SelectedIndex = 3;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Se han realizado cambios vuelva a calcular la ficha del cliente");
-                }                
+                }
             }
         }
 
         private void BtnAnteriorDatosFinales_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 2;            
+            tabControl1.SelectedIndex = 2;
         }
 
         private void BtnBorrarCrearCuenta_Click(object sender, EventArgs e)
@@ -206,38 +225,12 @@ namespace systemaGYMFITNESS.Presentacion
 
         private void TabControl1_TabIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 3)
-            {
-                lblCedula.Text = txtCedula.Text;
-                labelNombres.Text = txtNombres.Text;
-                lblApellidos.Text = txtApellidos.Text;
-                lblDireccion.Text = txtDireccion.Text;
-                lblFechaNacimiento.Text = dtpFecha_Nacimiento.Value.ToString("yyyy/MM/dd");
-                lblTelefono.Text = txtTelefono.Text;
-                lblCelular.Text = txtCelular.Text;
-                if (rbMasculino.Checked == true)
-                {
-                    lblSexo.Text = "Masculino";
-                }
-                if (rbFemenino.Checked == true)
-                {
-                    lblSexo.Text = "Femenino";
-                }
-                lblIndiceCinturaAltura.Text = txtIndici_cintura_altura.Text;
-                lblMasaCorporalMagra.Text = txtMasa_Corporal_magra.Text;
-                lblSobrepeso.Text = txt_Sobrepeso.Text;
-                lblNivel.Text = cbbNivel.SelectedItem.ToString();
-                lblRutina.Text = cbbRutina.SelectedItem.ToString();
-                lblFechaPago.Text = dtpFechaPago.Value.ToString("yyyy/MM/dd");
-                lblFechaProximoPago.Text = dtpFechaProximoPago.Value.ToString("yyyy/MM/dd");
-                lblCosto.Text = txtCosto.Text;
-                lblTotal.Text = txtTotal.Text;
-            }
+
         }
 
         private void TxtCedula_TextChanged(object sender, EventArgs e)
@@ -245,26 +238,15 @@ namespace systemaGYMFITNESS.Presentacion
             txtID_membresia.Text = "IDM" + txtCedula.Text;
         }
 
-        public Boolean estaVacio()
+        public Boolean estaVacioTAB1()
         {
             Boolean estado = false;
             estado = false;
-            foreach (Control ctrl in tabControl1.SelectedTab.Controls)
+            if (txtCedula.Text.Equals("") | txtNombres.Text.Equals("") | txtApellidos.Text.Equals("") | txtDireccion.Text.Equals("") | txtTelefono.Text.Equals("") | txtCelular.Text.Equals(""))
             {
-                if (ctrl is TextBox)
-                {
-                    if (ctrl.Text.Equals(""))
-                    {
-                        estado = true;
-                        ctrl.BackColor = Color.Pink;
-                    }
-                    else
-                    {
-                        ctrl.BackColor = Color.White;
-                    }
-
-                }
+                estado = true;
             }
+
             if (estado)
             {
                 estado = true;
@@ -285,8 +267,9 @@ namespace systemaGYMFITNESS.Presentacion
         }
         Boolean CambiosDatoMembresia = false;
         private void TbDias_TextChanged(object sender, EventArgs e)
-        {            
-            if (tbDias.Text.Length > 0) {
+        {
+            if (tbDias.Text.Length > 0)
+            {
                 dtpFechaProximoPago.Value = dtpFechaPago.Value.AddDays(int.Parse(tbDias.Text));
             }
             CambiosDatoMembresia = true;
@@ -294,10 +277,19 @@ namespace systemaGYMFITNESS.Presentacion
 
         private void DtpFechaPago_ValueChanged(object sender, EventArgs e)
         {
-            if (tbDias.Text.Length > 0)
+            if (!validaciones.fechasNoMenores(dtpFecha_Nacimiento.Value.ToString()))
             {
-                dtpFechaProximoPago.Value = dtpFechaPago.Value.AddDays(int.Parse(tbDias.Text));
+                MessageBox.Show("No puede Elegir fecha anteriores a la actual");
+                dtpFecha_Nacimiento.Value = DateTime.Now;
             }
+            else
+            {
+                if (tbDias.Text.Length > 0)
+                {
+                    dtpFechaProximoPago.Value = dtpFechaPago.Value.AddDays(int.Parse(tbDias.Text));
+                }
+            }            
+            CambiosDatoMembresia = true;
         }
         public double costoNivel = 0;
         public double costoRutina = 0;
@@ -337,28 +329,49 @@ namespace systemaGYMFITNESS.Presentacion
 
         private void BtnCalcular_Click(object sender, EventArgs e)
         {
-            txtCosto.Text = ((costoNivel + costoRutina) * int.Parse(tbDias.Text))+"";
-            txtTotal.Text = ""+(double.Parse(txtCosto.Text)*0.12 + double.Parse(txtCosto.Text));
-            CambiosDatoMembresia = false;
+            if (tbDias.TextLength > 0)
+            {
+                if (cbbNivel.Text.Equals("Escoja un valor"))
+                {
+                    MessageBox.Show("Seleccione un valor de la lista para el campo NIVEL", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    if (cbbRutina.Text.Equals("Escoja un valor"))
+                    {
+                        MessageBox.Show("Seleccione un valor de la lista para el campo Rutina", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        txtCosto.Text = ((costoNivel + costoRutina) * int.Parse(tbDias.Text)) + "";
+                        txtTotal.Text = "" + (double.Parse(txtCosto.Text) * 0.12 + double.Parse(txtCosto.Text));
+                        CambiosDatoMembresia = false;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Escoja un valor para el campo Dias", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void BtnSiguienteDatoMembresia_MouseClick(object sender, MouseEventArgs e)
-        {            
+        {
         }
 
         private void BtnSiguienteDatoMembresia_MouseEnter(object sender, EventArgs e)
-        {            
+        {
         }
 
         private void BtnCalcularDatosCorporales_Click(object sender, EventArgs e)
         {
             double grasa = 0;
-            if (txtPeso.TextLength>0 & txtCuello.TextLength>0 & txtCintura.TextLength>0 & txtAltura.TextLength > 0)
+            if (txtPeso.TextLength > 0 & txtCuello.TextLength > 0 & txtCintura.TextLength > 0 & txtAltura.TextLength > 0)
             {
                 //calcula indice cintura/altura
                 double peso = Double.Parse(txtPeso.Text);
                 double altura = Double.Parse(txtAltura.Text);
-                txtIndici_cintura_altura.Text = "" + (Math.Truncate((peso / (altura* altura)) * 100) / 100);
+                txtIndici_cintura_altura.Text = "" + (Math.Truncate((peso / (altura * altura)) * 100) / 100);
                 //calcula masa corporal magra
                 if (rbMasculino.Checked == true | rbFemenino.Checked == true)
                 {
@@ -391,14 +404,14 @@ namespace systemaGYMFITNESS.Presentacion
                     MessageBox.Show("Seleccione el campo sexo");
                 }
                 //calculamos el sobrepeso en base al indice cintura/altura
-                txt_Sobrepeso.Text = calculoSobrepeso()+"";
+                txt_Sobrepeso.Text = calculoSobrepeso() + "";
                 //habilitamos boton siguiente
                 cambioFicha = true;
             }
             else
             {
                 MessageBox.Show("Rellene todos los campos solicitados");
-            }           
+            }
         }
         public int calculoSobrepeso()
         {
@@ -411,7 +424,7 @@ namespace systemaGYMFITNESS.Presentacion
             //> 50 Obesidad de tipo IV(extrema)
             int tipoSobrepeso = 0;
             double indiceC_A = double.Parse(txtIndici_cintura_altura.Text);
-            if (indiceC_A>=18.5 & indiceC_A <= 24.9)
+            if (indiceC_A >= 18.5 & indiceC_A <= 24.9)
             {
                 tipoSobrepeso = 0;
             }
@@ -476,7 +489,7 @@ namespace systemaGYMFITNESS.Presentacion
                 {
                     txtCadera.Text = "";
                     txtCadera.Enabled = true;
-            }
+                }
             }
         }
 
@@ -524,7 +537,11 @@ namespace systemaGYMFITNESS.Presentacion
 
         private void DtpFecha_Nacimiento_ValueChanged(object sender, EventArgs e)
         {
-
+            if (!validaciones.fechasNoMayores(dtpFecha_Nacimiento.Value.ToString()))
+            {
+                MessageBox.Show("No puede Elegir fecha posteriores a la actual");
+                dtpFecha_Nacimiento.Value = DateTime.Now;
+            }
             cambioFicha = false;
 
         }
@@ -536,7 +553,7 @@ namespace systemaGYMFITNESS.Presentacion
 
         private void CbbNivel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validaciones.noEscribir(e,false);
+            validaciones.noEscribir(e, false);
         }
 
         private void CbbRutina_KeyPress(object sender, KeyPressEventArgs e)
@@ -567,6 +584,133 @@ namespace systemaGYMFITNESS.Presentacion
         private void TxtCedula_KeyPress(object sender, KeyPressEventArgs e)
         {
             validaciones.soloNumero(e, false);
+        }
+
+        private void TabControl1_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+        //PERMITIR EL CAMBIO DE PESTAÑA    
+        int previaPestaña = 0;
+        private void TabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (controlCambioTabs(previaPestaña))
+            {
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        public Boolean controlCambioTabs(int actualTab)
+        {
+            Boolean permitirPaso = false;
+            switch (actualTab)
+            {
+                case 0:
+                    if (estaVacioTAB1() == false)
+                    {
+                        permitirPaso = true;
+                        previaPestaña = tabControl1.SelectedIndex;
+                    }
+                    else
+                    {
+                        previaPestaña = 0;
+                    }
+                    break;
+                case 1:
+                    if (CambiosDatoMembresia == true)
+                    {
+                        MessageBox.Show("Debe de calcular el costo antes de continuar");
+                        permitirPaso = false;
+                        previaPestaña = 1;
+                    }
+                    else
+                    {
+                        if (tbDias.TextLength > 0)
+                        {
+                            if (cbbNivel.Text.Equals("Escoja un valor"))
+                            {
+                                MessageBox.Show("Seleccione un valor de la lista para el campo NIVEL", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                permitirPaso = false;
+                                previaPestaña = 1;
+                            }
+                            else
+                            {
+                                if (cbbRutina.Text.Equals("Escoja un valor"))
+                                {
+                                    MessageBox.Show("Seleccione un valor de la lista para el campo Rutina", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                    permitirPaso = false;
+                                    previaPestaña = 1;
+                                }
+                                else
+                                {
+                                    previaPestaña = tabControl1.SelectedIndex;
+                                    permitirPaso = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Escriba una valor para el campo Dias", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            permitirPaso = false;
+                            previaPestaña = 1;
+                        }
+                    }
+                    break;
+                case 2:
+                    if (txtPeso.TextLength > 0 | txtCuello.TextLength > 0 | txtAltura.TextLength > 0 | txtCintura.TextLength > 0)
+                    {
+                        if (cambioFicha)
+                        {
+                            previaPestaña = tabControl1.SelectedIndex;
+                            permitirPaso = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Se han realizado cambios vuelva a calcular la ficha del cliente");
+                            permitirPaso = false;
+                            previaPestaña = 2;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No deje Campos Vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        permitirPaso = false;
+                        previaPestaña = 2;
+                    }
+                    break;
+                case 3:
+                    lblCedula.Text = txtCedula.Text;
+                    labelNombres.Text = txtNombres.Text;
+                    lblApellidos.Text = txtApellidos.Text;
+                    lblDireccion.Text = txtDireccion.Text;
+                    lblFechaNacimiento.Text = dtpFecha_Nacimiento.Value.ToString("yyyy/MM/dd");
+                    lblTelefono.Text = txtTelefono.Text;
+                    lblCelular.Text = txtCelular.Text;
+                    if (rbMasculino.Checked == true)
+                    {
+                        lblSexo.Text = "Masculino";
+                    }
+                    if (rbFemenino.Checked == true)
+                    {
+                        lblSexo.Text = "Femenino";
+                    }
+                    lblIndiceCinturaAltura.Text = txtIndici_cintura_altura.Text;
+                    lblMasaCorporalMagra.Text = txtMasa_Corporal_magra.Text;
+                    lblSobrepeso.Text = txt_Sobrepeso.Text;
+                    lblNivel.Text = cbbNivel.SelectedItem.ToString();
+                    lblRutina.Text = cbbRutina.SelectedItem.ToString();
+                    lblFechaPago.Text = dtpFechaPago.Value.ToString("yyyy/MM/dd");
+                    lblFechaProximoPago.Text = dtpFechaProximoPago.Value.ToString("yyyy/MM/dd");
+                    lblCosto.Text = txtCosto.Text;
+                    lblTotal.Text = txtTotal.Text;
+                    permitirPaso = true;
+                    break;
+            }
+            return permitirPaso;
         }
     }
 }

@@ -22,11 +22,11 @@ namespace systemaGYMFITNESS.LogicaNegocio
 
         public void insert()
         {
-            OBJcliente = getDatosEmpleado();
+            OBJcliente = getDatosClientes();
             datos_cliente.insert(OBJcliente);
         }
 
-        public clientes getDatosEmpleado()
+        public clientes getDatosClientes()
         {
             OBJcliente = new clientes();
             OBJcliente.cedula = formulario.txtCedula.Text.Trim();

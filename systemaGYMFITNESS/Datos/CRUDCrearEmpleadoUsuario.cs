@@ -126,12 +126,8 @@ namespace systemaGYMFITNESS.Datos
                     {
                         MessageBox.Show("Error Inesperado al eliminar datos, Contacte con el administrador del Sistema : \n" + ex, "Error update", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
                 }
-
             }
-
-
         }
     }
 

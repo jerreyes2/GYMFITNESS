@@ -84,20 +84,32 @@ namespace systemaGYMFITNESS.LogicaNegocio
             }
         }
 
-        public static void fechasNoMayores(EventArgs e)
+        public static Boolean fechasNoMenores(string fecha)
         {
-        //    DateTime fecha_nac = DateTime.TryParse(e.ToString);
-        //    int result = DateTime.Compare(fecha_nac, DateTime.Today);
+            Boolean permitir = true;
+            DateTime fechaUsuario = DateTime.Parse(fecha);
+            int result = DateTime.Compare(fechaUsuario, DateTime.Today);
+            string compara;
+            if (result < 0)
+                permitir = false;
+            //if (result < 0)
+            //    compara = "la fecha de nacimiento es menor que la actual";
+            //else if (result == 0)
+            //    compara = "las fechas coniciden";
+            //else
+            //    compara = "la fecha de nacimiento es superiorr a la actual";
+            return permitir;
+        }
 
-        //    string compara;
-        //    if (result < 0)
-        //        compara = "la fecha de nacimiento es menor que la actual";
-
-        //    else if (result == 0)
-        //        compara = "las fechas coniciden";
-
-        //    else
-        //        compara = "la fecha de nacimiento es superiorr a la actual";
+        public static Boolean fechasNoMayores(string fecha)
+        {
+            Boolean permitir = true;
+            DateTime fechaUsuario = DateTime.Parse(fecha);
+            int result = DateTime.Compare(fechaUsuario, DateTime.Today);
+            string compara;
+            if (result > 0)
+                permitir = false;
+            return permitir;
         }
     }
 }

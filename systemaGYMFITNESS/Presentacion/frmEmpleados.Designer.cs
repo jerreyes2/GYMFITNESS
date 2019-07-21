@@ -329,6 +329,7 @@ namespace systemaGYMFITNESS.Presentacion
             this.btnEditar2.TabIndex = 62;
             this.btnEditar2.Text = "Guardar edición";
             this.btnEditar2.UseVisualStyleBackColor = true;
+            this.btnEditar2.Click += new System.EventHandler(this.BtnEditar2_Click);
             // 
             // pictureBox3
             // 

@@ -160,6 +160,11 @@ namespace systemaGYMFITNESS.Presentacion
             controlador.buscar();
            
         }
+
+        private void BtnEditar2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
    

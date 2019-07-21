@@ -118,9 +118,7 @@ namespace systemaGYMFITNESS.Presentacion
    
         private void BtnClientes_Click(object sender, EventArgs e)
         {
-
-            metodosFormularios.AbrirFormulario<frmClientes>(this.panelContenedor, this.btnClientes);
-
+            metodosFormularios.AbrirFormulario<frmAsistenteCRUDClientes>(this.panelContenedor, this.btnClientes);
         }
 
 

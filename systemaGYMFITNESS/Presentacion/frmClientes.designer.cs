@@ -59,6 +59,7 @@
             this.txtCedula = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tabDatosMembresia = new System.Windows.Forms.TabPage();
+            this.btnCalcular = new System.Windows.Forms.Button();
             this.txtID_membresia = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
@@ -82,6 +83,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tabFicha = new System.Windows.Forms.TabPage();
+            this.btnCalcularDatosCorporales = new System.Windows.Forms.Button();
             this.btnSiguienteFicha = new System.Windows.Forms.Button();
             this.btnBorrarFicha = new System.Windows.Forms.Button();
             this.btnAnteriorFicha = new System.Windows.Forms.Button();
@@ -146,8 +148,6 @@
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
-            this.btnCalcular = new System.Windows.Forms.Button();
-            this.btnCalcularDatosCorporales = new System.Windows.Forms.Button();
             this.panelPrincipal.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTitulo.SuspendLayout();
@@ -226,7 +226,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.5618F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.4382F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tableLayoutPanel2.Controls.Add(this.btnCerrar, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnMaximizar, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnMinimizar, 0, 0);
@@ -244,7 +244,7 @@
             this.btnCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCerrar.FlatAppearance.BorderSize = 0;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Location = new System.Drawing.Point(82, 3);
+            this.btnCerrar.Location = new System.Drawing.Point(81, 3);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(24, 22);
             this.btnCerrar.TabIndex = 7;
@@ -257,7 +257,7 @@
             this.btnMaximizar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMaximizar.FlatAppearance.BorderSize = 0;
             this.btnMaximizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximizar.Location = new System.Drawing.Point(43, 3);
+            this.btnMaximizar.Location = new System.Drawing.Point(42, 3);
             this.btnMaximizar.Name = "btnMaximizar";
             this.btnMaximizar.Size = new System.Drawing.Size(30, 28);
             this.btnMaximizar.TabIndex = 6;
@@ -292,6 +292,7 @@
             this.tabControl1.Controls.Add(this.tabDatosMembresia);
             this.tabControl1.Controls.Add(this.tabFicha);
             this.tabControl1.Controls.Add(this.tabDatosFinales);
+            this.tabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -300,7 +301,9 @@
             this.tabControl1.Size = new System.Drawing.Size(752, 517);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
+            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabControl1_Selecting);
             this.tabControl1.TabIndexChanged += new System.EventHandler(this.TabControl1_TabIndexChanged);
+            this.tabControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TabControl1_MouseClick);
             // 
             // tabDatosPersonales
             // 
@@ -563,6 +566,20 @@
             this.tabDatosMembresia.Text = "Datos Membresia";
             this.tabDatosMembresia.UseVisualStyleBackColor = true;
             this.tabDatosMembresia.Click += new System.EventHandler(this.TabDatosMembresia_Click);
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(98)))), ((int)(((byte)(203)))));
+            this.btnCalcular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalcular.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalcular.ForeColor = System.Drawing.Color.White;
+            this.btnCalcular.Location = new System.Drawing.Point(578, 124);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(115, 34);
+            this.btnCalcular.TabIndex = 15;
+            this.btnCalcular.Text = "Calcular";
+            this.btnCalcular.UseVisualStyleBackColor = false;
+            this.btnCalcular.Click += new System.EventHandler(this.BtnCalcular_Click);
             // 
             // txtID_membresia
             // 
@@ -849,6 +866,20 @@
             this.tabFicha.TabIndex = 2;
             this.tabFicha.Text = "Ficha";
             this.tabFicha.UseVisualStyleBackColor = true;
+            // 
+            // btnCalcularDatosCorporales
+            // 
+            this.btnCalcularDatosCorporales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(98)))), ((int)(((byte)(203)))));
+            this.btnCalcularDatosCorporales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalcularDatosCorporales.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalcularDatosCorporales.ForeColor = System.Drawing.Color.White;
+            this.btnCalcularDatosCorporales.Location = new System.Drawing.Point(359, 281);
+            this.btnCalcularDatosCorporales.Name = "btnCalcularDatosCorporales";
+            this.btnCalcularDatosCorporales.Size = new System.Drawing.Size(115, 34);
+            this.btnCalcularDatosCorporales.TabIndex = 26;
+            this.btnCalcularDatosCorporales.Text = "Calcular";
+            this.btnCalcularDatosCorporales.UseVisualStyleBackColor = false;
+            this.btnCalcularDatosCorporales.Click += new System.EventHandler(this.BtnCalcularDatosCorporales_Click);
             // 
             // btnSiguienteFicha
             // 
@@ -1602,34 +1633,6 @@
             this.label49.Size = new System.Drawing.Size(243, 33);
             this.label49.TabIndex = 67;
             this.label49.Text = "Datos Personales:";
-            // 
-            // btnCalcular
-            // 
-            this.btnCalcular.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(98)))), ((int)(((byte)(203)))));
-            this.btnCalcular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCalcular.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalcular.ForeColor = System.Drawing.Color.White;
-            this.btnCalcular.Location = new System.Drawing.Point(578, 124);
-            this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(115, 34);
-            this.btnCalcular.TabIndex = 15;
-            this.btnCalcular.Text = "Calcular";
-            this.btnCalcular.UseVisualStyleBackColor = false;
-            this.btnCalcular.Click += new System.EventHandler(this.BtnCalcular_Click);
-            // 
-            // btnCalcularDatosCorporales
-            // 
-            this.btnCalcularDatosCorporales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(98)))), ((int)(((byte)(203)))));
-            this.btnCalcularDatosCorporales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCalcularDatosCorporales.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalcularDatosCorporales.ForeColor = System.Drawing.Color.White;
-            this.btnCalcularDatosCorporales.Location = new System.Drawing.Point(359, 281);
-            this.btnCalcularDatosCorporales.Name = "btnCalcularDatosCorporales";
-            this.btnCalcularDatosCorporales.Size = new System.Drawing.Size(115, 34);
-            this.btnCalcularDatosCorporales.TabIndex = 26;
-            this.btnCalcularDatosCorporales.Text = "Calcular";
-            this.btnCalcularDatosCorporales.UseVisualStyleBackColor = false;
-            this.btnCalcularDatosCorporales.Click += new System.EventHandler(this.BtnCalcularDatosCorporales_Click);
             // 
             // frmClientes
             // 
